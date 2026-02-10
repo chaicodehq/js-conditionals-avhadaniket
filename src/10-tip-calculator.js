@@ -30,5 +30,36 @@
  * @returns {{ tipPercentage: number, tipAmount: number, totalAmount: number } | null}
  */
 export function calculateTip(billAmount, serviceRating) {
-  // Your code here
+    
+    if(billAmount <= 0 || isNaN(billAmount)){
+      return null;
+    }
+
+    if((serviceRating < 1 || serviceRating > 5) || isNaN(serviceRating) || !Number.isInteger(serviceRating)){
+      return null;
+    }
+
+    if(serviceRating == '1'){            
+      return { tipPercentage: 5, tipAmount: calculatePercentage(billAmount,5), totalAmount: parseFloat(billAmount) + calculatePercentage(billAmount,5) };
+    }
+    else if(serviceRating == '2'){            
+      return { tipPercentage: 10, tipAmount: calculatePercentage(billAmount,10), totalAmount: parseFloat(billAmount) + calculatePercentage(billAmount,10) };
+    }
+    else if(serviceRating == '3'){            
+      return { tipPercentage: 15, tipAmount: calculatePercentage(billAmount,15), totalAmount: parseFloat(billAmount) + calculatePercentage(billAmount,15) };
+    }
+    else if(serviceRating == '4'){            
+      return { tipPercentage: 20, tipAmount: calculatePercentage(billAmount,20), totalAmount: parseFloat(billAmount) + calculatePercentage(billAmount,20) };
+    }
+    else if(serviceRating == '5'){            
+      return { tipPercentage: 25, tipAmount: calculatePercentage(billAmount,25), totalAmount: parseFloat(billAmount) + calculatePercentage(billAmount,25) };
+    }
+
+    
 }
+
+function calculatePercentage(num, per){
+  return num / 100 * per;
+}
+
+console.log(calculateTip(100,1));

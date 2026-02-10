@@ -18,8 +18,45 @@
  *
  * @param {number} temperature - Temperature in Celsius
  * @param {boolean} isRaining - Whether it's currently raining
- * @returns {string} The weather advisory message
+ * @returns {string} The weather advisory messtemperature
  */
 export function getWeatherAdvice(temperature, isRaining) {
-  // Your code here
+    let weatherMsg;
+
+  if(isNaN(temperature)){
+    return 'INVALID';
+  }
+  else if(temperature >= 35) {
+    weatherMsg = 'Too hot for hiking - stay indoors and hydrate';
+  }
+  else if(temperature >= 25 && temperature <= 34) {
+    if(isRaining) {
+      weatherMsg = 'Warm but rainy - consider indoor activities';
+    }
+    else{
+      weatherMsg = "Great weather for hiking - don't forget sunscreen";
+    }
+  }
+  else if(temperature >= 15 && temperature <= 24) {
+    if(isRaining) {
+      weatherMsg = 'Cool and rainy - bring waterproof gear if hiking';
+    }
+    else{
+      weatherMsg = "Perfect hiking weather - enjoy the trails";
+    }
+  }
+  else if(temperature >= 5) {
+    if(isRaining) {
+      weatherMsg = 'Cold and wet - best to stay indoors';
+    }
+    else{
+      weatherMsg = "Chilly - wear layers for your hike";
+    }
+  }
+  else if(temperature < 5) {
+    weatherMsg = "Too cold - stay warm indoors";
+  }
+
+  return  weatherMsg;
+
 }
